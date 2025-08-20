@@ -8,22 +8,15 @@ version = "0.1.0-beta"
 description = "A simple Django middleware for rate limiting by IP or user"
 authors = [{name="Bryan Donnelly", email="bryandonnelly7@gmail.com"}]
 readme = "README.md"
-license = "MIT"
-license-files = []
 requires-python = ">=3.12"
 dependencies = [
     "Django>=5.1"
 ]
 classifiers = [
-    "Development Status :: 2 - Pre-Alpha",
-    "Environment :: Web Environment",
-    "Framework :: Django",
-    "Intended Audience :: Developers",
-    "Operating System :: OS Independent",
-    "Programming Language :: Python",
+    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.12",
+    "Framework :: Django",
 ]
 
 [project.urls]
