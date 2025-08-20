@@ -56,3 +56,8 @@ jobs:
           name: pytest-coverage-${{ matrix.python-version }}
           path: coverage.xml
         if: ${{ always() }}
+
+      - name: Update CodeCov badge branch name
+        run: |
+          BRANCH=${GITHUB_REF##*/}
+          sed -i "s|BRANCH-PLACEHOLDER|$BRANCH|g" README.md
