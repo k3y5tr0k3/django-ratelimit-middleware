@@ -69,3 +69,11 @@ skip-magic-trailing-comma = false
 line-ending = "auto"
 docstring-code-format = false
 docstring-code-line-length = "dynamic"
+
+[tool.pytest.ini_options]
+addopts = ["-v", "--ds=tests.settings", "--junitxml=./test-results.xml", "--cov=.", "--cov-report=xml:./coverage.xml"]
+testpaths = ["tests"]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]
+pythonpath = ["."]
