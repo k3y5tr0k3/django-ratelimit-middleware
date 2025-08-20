@@ -1,4 +1,4 @@
-name: Publish
+name: Build & Publish
 
 on:
   release:
@@ -14,5 +14,8 @@ jobs:
     permissions:
       id-token: write
     steps:
+      - name: Build package
+        run: |
+          python -m build
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
