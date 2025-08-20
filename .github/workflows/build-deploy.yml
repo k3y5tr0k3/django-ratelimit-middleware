@@ -1,11 +1,10 @@
-name: Build
+name: Build and Publish
 
 on:
-  pull_request:
-    types:
-      - closed
-    branches:
-      - release/*
+  push:
+    tags:
+      - '*'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -30,3 +29,19 @@ jobs:
         with:
           name: dist
           path: dist/*
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+          
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
