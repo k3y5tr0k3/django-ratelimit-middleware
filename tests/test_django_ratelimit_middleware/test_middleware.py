@@ -51,7 +51,7 @@ def rf() -> RequestFactory:
 def clear_cache() -> Generator[Any, None, None]:
     """
     Fixture to clear the Django cache before and after each test.
-    
+
     Ensures that rate limit state does not leak between tests.
     """
     cache.clear()

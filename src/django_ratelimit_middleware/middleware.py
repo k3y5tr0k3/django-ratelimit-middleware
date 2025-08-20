@@ -1,10 +1,10 @@
 """src/django_ratelimit_middleware/middleware.py.
 
 This module provides a Django middleware class for simple IP- or user-based
-rate limiting. It is designed to prevent abuse by limiting the number of 
+rate limiting. It is designed to prevent abuse by limiting the number of
 requests a client can make in a given time window.
 
-The middleware uses Django's cache framework to store request timestamps and 
+The middleware uses Django's cache framework to store request timestamps and
 enforces limits based on configurable settings:
 
     - RATE_LIMIT_REQUESTS: Maximum number of requests allowed per window (default 100)
@@ -46,11 +46,11 @@ class RateLimitMiddleware:
             Time window in seconds for rate limiting (default: 60)
 
     Attributes:
-        get_response (Callable[[HttpRequest], HttpResponse]): 
+        get_response (Callable[[HttpRequest], HttpResponse]):
             The next middleware or view.
-        rate_limit (int): 
+        rate_limit (int):
             Maximum requests allowed.
-        time_window (int): 
+        time_window (int):
             Time window in seconds.
     """
 
@@ -59,7 +59,7 @@ class RateLimitMiddleware:
         Initialize the RateLimitMiddleware.
 
         Args:
-            get_response (Callable[[HttpRequest], HttpResponse]): 
+            get_response (Callable[[HttpRequest], HttpResponse]):
                 The next middleware or view function in the request/response chain.
         """
         self.get_response: Callable[[HttpRequest], HttpResponse] = get_response
@@ -74,8 +74,8 @@ class RateLimitMiddleware:
             request (HttpRequest): The incoming HTTP request.
 
         Returns:
-            HttpResponse: 
-                Either the normal response from the next middleware/view or a 429 Too 
+            HttpResponse:
+                Either the normal response from the next middleware/view or a 429 Too
                 Many Requests response if the limit is exceeded.
         """
         identifier: str = self._get_identifier(request)
@@ -94,7 +94,7 @@ class RateLimitMiddleware:
                     "retry_after_seconds": retry_after,
                 },
                 status=429,
-                headers={"Retry-After": str(retry_after)}
+                headers={"Retry-After": str(retry_after)},
             )
 
         cache.set(cache_key, history, timeout=self.time_window)
