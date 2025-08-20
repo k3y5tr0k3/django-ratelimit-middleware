@@ -18,11 +18,11 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install build tools
-        run: pip install build
+      - name: Install Hatch
+        run: pip install --upgrade hatch
 
-      - name: Build package
-        run: python -m build
+      - name: Build package with Hatch
+        run: hatch build
 
       - name: Upload dist artifact
         uses: actions/upload-artifact@v4
@@ -37,16 +37,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download artifact
+      - name: Download dist artifact
         uses: actions/download-artifact@v4
         with:
           name: dist
           path: dist
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip setuptools wheel twine build
-          
+      - name: Install Hatch
+        run: pip install --upgrade hatch
+
       - name: Publish to PyPI
-        run: |
-          twine upload dist/* -u __token__ -p ${{ secrets.PYPI_TOKEN }} --verbose
+        env:
+          HATCH_INDEX_USER: __token__
+          HATCH_INDEX_AUTH: ${{ secrets.PYPI_TOKEN }}
+        run: hatch publish dist/*
