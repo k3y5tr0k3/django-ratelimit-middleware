@@ -1,21 +1,21 @@
-name: Build & Publish
+name: Publish
 
 on:
-  release:
-    types: [published]
-  push:
-    tags:
-      - "v*"
+  workflow_run:
+    workflows: ["Build"]
+    types:
+      - completed
 
 jobs:
-  pypi-publish:
-    name: upload release to PyPI
+  publish:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
     steps:
-      - name: Build package
-        run: |
-          python -m build
-      - name: Publish package distributions to PyPI
+      - uses: actions/checkout@v4
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+      - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
