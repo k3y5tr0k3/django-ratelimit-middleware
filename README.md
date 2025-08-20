@@ -1,6 +1,5 @@
 # django-ratelimit-middleware
 
-
 [![Python - >=3.12](https://img.shields.io/badge/Python->=3.12-2ea44f?logo=python&logoColor=yellow)](https://www.python.org/)
 [![codecov](https://codecov.io/gh/k3y5tr0k3/django-ratelimit-middleware/branch/master/graph/badge.svg?token=nkXbpqFJot)](https://codecov.io/gh/k3y5tr0k3/django-ratelimit-middleware)
 [![Style - Black](https://img.shields.io/badge/Style-Black-black?logo=stylelint&logoColor=white)](https://github.com/psf/black)
