@@ -49,4 +49,4 @@ jobs:
           
       - name: Publish to PyPI
         run: |
-          twine upload dist/* -u __token__ -p ${{ secrets.PYPI_TOKEN }}
+          twine upload dist/* -u __token__ -p ${{ secrets.PYPI_TOKEN }} -vv
