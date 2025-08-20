@@ -9,6 +9,7 @@ description = "A simple Django middleware for rate limiting by IP or user"
 authors = [{name="Bryan Donnelly", email="bryandonnelly7@gmail.com"}]
 readme = "README.md"
 license = "MIT"
+license-files = []
 requires-python = ">=3.12"
 dependencies = [
     "Django>=5.1"
