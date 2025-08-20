@@ -26,15 +26,14 @@ Classes:
 """
 
 import time
-from typing import Callable, Any
+from typing import Callable
 from django.core.cache import cache
 from django.http import JsonResponse, HttpRequest, HttpResponse
 from django.conf import settings
 
 
 class RateLimitMiddleware:
-    """
-    Django middleware for simple IP/user-based rate limiting.
+    """Django middleware for simple IP/user-based rate limiting.
 
     This middleware tracks request timestamps per client (IP address or
     authenticated user) and limits the number of requests within a time window.
@@ -55,8 +54,7 @@ class RateLimitMiddleware:
     """
 
     def __init__(self, get_response: Callable[[HttpRequest], HttpResponse]) -> None:
-        """
-        Initialize the RateLimitMiddleware.
+        """Initialize the RateLimitMiddleware.
 
         Args:
             get_response (Callable[[HttpRequest], HttpResponse]):
@@ -67,8 +65,7 @@ class RateLimitMiddleware:
         self.time_window: int = getattr(settings, "RATE_LIMIT_WINDOW", 60)
 
     def __call__(self, request: HttpRequest) -> HttpResponse:
-        """
-        Process an incoming HTTP request and enforce rate limits.
+        """Process an incoming HTTP request and enforce rate limits.
 
         Args:
             request (HttpRequest): The incoming HTTP request.
@@ -101,8 +98,7 @@ class RateLimitMiddleware:
         return self.get_response(request)
 
     def _get_identifier(self, request: HttpRequest) -> str:
-        """
-        Determine a unique identifier for the client making the request.
+        """Determine a unique identifier for the client making the request.
 
         Uses the authenticated user's ID if available, otherwise the remote IP.
 

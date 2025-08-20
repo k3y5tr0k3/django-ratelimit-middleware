@@ -1,4 +1,4 @@
-"""tests/settings.py
+"""tests/settings.py.
 
 Basic settings file for testing purposes.
 """
