@@ -46,13 +46,13 @@ jobs:
       - name: Upload pytest test results
         uses: actions/upload-artifact@v4
         with:
-          name: pytest-results
+          name: pytest-results-${{ matrix.python-version }}
           path: test-results.xml
         if: ${{ always() }}
 
       - name: Upload coverage results
         uses: actions/upload-artifact@v4
         with:
-          name: pytest-coverage
+          name: pytest-coverage-${{ matrix.python-version }}
           path: coverage.xml
         if: ${{ always() }}
