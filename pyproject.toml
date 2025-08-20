@@ -13,6 +13,18 @@ requires-python = ">=3.12"
 dependencies = [
     "Django>=5.1"
 ]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Environment :: Web Environment",
+    "Framework :: Django",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.12",
+]
 
 [project.urls]
 Homepage = "https://github.com/k3y5tr0k3/django-ratelimit-middleware"
